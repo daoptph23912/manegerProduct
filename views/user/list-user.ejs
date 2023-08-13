@@ -1,0 +1,83 @@
+<%- include('../inc/top') %>
+    <!--  -->
+
+    <div class="row">
+        <h2 style="text-align: center;font-weight: bold;font-style: italic;">Danh sách người dùng</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Content</th>
+                <th>Country</th>
+                <th>Date</th>
+                <td>
+                    <form method="get" action="/users" class="d-flex" role="search">
+                        <input  name="name" id="name" type="text" value='<%= searchString %>'>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <button id="sortButton">Sắp xếp</button>
+
+                </td>
+            </tr>
+            <% userList.forEach( ( row )=> { %>
+                <tr>
+                    <td> <%= row._id %></td>
+                    <td>
+                            <%= row.name %>
+                    </td>
+                    <td>
+                        <%= row.content %>
+                    </td>
+                    <td>
+                        <%= row.country %>
+                    </td>
+                    <td>
+                        <%= row.date %>
+                    </td>
+                    <td>
+                       
+                        <a   style="font-size: 20px; text-decoration: honeydew;  float: right;"   href="/users/deleteUSer/<%= row._id %>">Xóa </a>
+                    </td>
+                    <td>
+                        <a style="font-size: 20px; text-decoration: honeydew; float: right;"  href="/users/editUser/<%= row._id %>">
+                           Sửa
+
+                        </a>
+                    </td>
+                </tr>
+                <% }); %>
+
+        </table>
+        <script>
+            document.getElementById("sortButton").addEventListener("click", function() {
+  // Lấy danh sách người dùng và sắp xếp theo tên
+  var userList = document.getElementById("userList");
+  var items = userList.getElementsByTagName("li");
+  items = Array.prototype.slice.call(items);
+  items.sort(function(a, b) {
+    return a.innerText.localeCompare(b.innerText);
+  });
+  
+  // Xóa danh sách hiện tại và thêm lại danh sách đã sắp xếp
+  while (userList.firstChild) {
+    userList.removeChild(userList.firstChild);
+  }
+  for (var i = 0; i < items.length; i++) {
+    userList.appendChild(items[i]);
+  }
+});
+
+        </script>
+        <ul id="userList">
+            <% for(var i=0; i<userList.length; i++) { %>
+              <li><%= userList[i].name %></li>
+            <% } %>
+          </ul> 
+       
+
+        <div class="col">
+            <a class="w-100 btn btn-primary btn-lg" href="/users/addUser">Thêm người dùng</a>
+        </div>
+    </div>
+    <!--  -->
+

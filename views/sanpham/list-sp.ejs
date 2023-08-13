@@ -1,0 +1,48 @@
+<%- include('../inc/top.ejs') %>
+   
+<div class="row">
+    <h2 style="text-align: center;font-weight: bold;font-style: italic;">Danh sách sản phẩm</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Money</th>
+            <th>Description</th>
+            <th>Category</th>
+           
+        </tr>
+     
+        <% listSp.forEach( ( row )=> { %>
+            <tr >
+               <td> <%= row.id %></td>
+                <td>
+                    <a href="/sp/detail/<%= row._id %>">
+                        <%= row.name %>
+
+                    </a>
+                </td>
+                <td>
+                        <%= row.price %>
+                </td>
+                <td>
+                    <%= row.description %>
+                </td>
+                <td>
+                    <%= row.id_theloai.name %>
+                </td>
+                <td >
+                    <a href="/sp/delete/<%= row._id %>" style="font-size: 20px;float: right; text-decoration: honeydew;"  class="">Xóa</a>
+                </td>
+                <td>
+                    <a style="font-size: 20px;float:right; text-decoration: honeydew;" href="/sp/edit/<%= row._id %>">
+                        Sửa
+
+                    </a>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
+</div>
+<!--  -->
+<a class="w-100 btn btn-primary btn-lg" href="/sp/addSp">Thêm sản phẩm</a>
+

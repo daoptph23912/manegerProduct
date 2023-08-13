@@ -1,0 +1,65 @@
+<%- include('../inc/top') %>
+    <div class="row">
+        <h2 style="text-align: center;margin-top: 0px;font-weight: bold;font-style: italic;">Sửa sản phẩm </h2>
+        <div class="tab-content" style="margin-top: 0px;margin-bottom: 5px;">
+            <div class="tab-pane fade show active" role="tabpanel">
+                <div class="card">
+                    <main>
+                        <div class="container-fluid justify-content-center mt-1">
+                            <div class="row justify-content-center">
+                                <div class="col-8">
+                                    <form class="needs-validation" action="" method="post">
+
+                                        <div class="col-12">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" class="form-control" name="name" placeholder="Tên SP"
+                                                value="<%= objSP.name %>" required>
+                                            <div class="invalid-feedback">
+                                                Valid full name is required..
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="price" class="form-label">Price</label>
+                                            <input type="number" class="form-control" name="price" placeholder="Giá"
+                                                value="<%= objSP.price %>" required>
+                                            <div class="invalid-feedback">
+                                                Valid full name is required..
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="price" class="form-label">Price</label>
+                                            <input type="text" class="form-control" name="description" placeholder="Giá"
+                                                value="<%= objSP.description %>" required>
+                                            <div class="invalid-feedback">
+                                                Valid full name is required..
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="theloai" class="form-label">Category</label>
+                                            <select class="form-select" name="theloai" id="theloai">
+                                                <% listTheLoai.forEach((item) =>{%>
+                                                    <option value="<%= item._id %>"> <%= item.name %></option>
+                                                    <%}) %>
+                                            </select>
+                                        </div>
+                                        <button onclick="myFunction()" class="w-100 btn btn-primary btn-lg" style="margin-top: 10px;"
+                                            type="submit">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <div class="alert " style="text-align: center;color: red;" role="alert">
+                        <%= msg %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+            alert("Bạn đã sửa thành công");
+        }
+    </script>
+    <%- include('../inc/bottom') %>
